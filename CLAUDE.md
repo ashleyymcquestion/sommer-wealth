@@ -19,8 +19,13 @@ See `brand/colors-and-fonts.md`. Style is dark brown-black with gold accents, el
 - QR code (`business-card/qr-code.png`) points to `https://link.sendlink.co/qr/OoK5bFeptYCX`. Always test that a changed QR code still scans.
 - The `#front` card and `?art=funnel|target|network` in card.html are older light-front options, kept for reference.
 
+## Design resources in this repo
+- **Fonts:** `brand/fonts/` has the three brand fonts (open font license). `card.html` loads them from there, so nothing depends on Google Fonts. Use the same `@font-face` rules for new pieces.
+- **Icons:** `brand/icons/lucide/` is the full Lucide icon set (2,000+ thin-line SVGs, ISC license). Search `tags.json` for a word (e.g. "phone", "shield", "chart") to find the right file. Restyle with `stroke` in the brand gold; keep stroke width around 1.5 so they match the card.
+- **QR codes:** `python3 tools/make-qr.py "<link>" out.png` makes a brand-colored QR code and checks it scans. Ashley may also supply her own tracked QR codes (like the sendlink one on the card); use those as given.
+
 ## Making changes
-Edit `card.html`, then render with Playwright (Chromium) at 1050 × 600 per card to make the PNGs, and print the PDF at 3.5in × 2in with the dark front on page 1 and the back on page 2. Look at the rendered images before sending them.
+Edit `business-card/card.html`, then run `node tools/render-card.js` to rebuild the PNGs, the options, and the 2-page PDF (dark front on page 1, back on page 2). Look at the rendered images, and check the QR still scans, before sending them.
 
 ## Printing
 - Same-day: Staples, 2160 Barranca Pkwy, Irvine (949-838-0388). Order online by 12 pm for same-day pickup, about $21.99 for 250 on 14pt stock. One design per order.
