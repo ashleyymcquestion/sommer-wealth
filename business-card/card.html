@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ashley McQuestion Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #efe8dc;
+    --cream-2: #e6ddcd;
+    --ink: #1d1a17;
+    --ink-soft: #3a342e;
+    --dark: #1b1815;
+    --dark-2: #2a2520;
+    --gold: #b98a5a;
+    --gold-light: #e2bf8f;
+    --gold-dark: #8a5f35;
+    --text-light: #e9e1d4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #d9d3c8; font-family: 'Montserrat', sans-serif; padding: 40px; display: flex; flex-direction: column; gap: 40px; align-items: center; }
+
+  /* 3.5in x 2in at 300dpi */
+  .card { width: 1050px; height: 600px; position: relative; overflow: hidden; }
+
+  /* ---------- FRONT ---------- */
+  .front { background: radial-gradient(ellipse at 20% 30%, #f5efe5 0%, var(--cream) 55%, var(--cream-2) 100%); color: var(--ink); }
+  .front .panel { position: absolute; inset: 0; }
+  .front .content { position: absolute; left: 78px; top: 64px; width: 600px; }
+
+  .logo { font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: 96px; line-height: 1; letter-spacing: 0.05em; display: flex; align-items: center; color: var(--ink); }
+  .logo svg { width: 78px; height: 78px; margin: 0 4px 0 2px; }
+  .wm { font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 23px; letter-spacing: 0.32em; margin: 10px 0 0 48px; color: var(--ink-soft); }
+  .rule { width: 70px; height: 2px; background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark)); margin: 24px 0 0 238px; }
+
+  .name { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 46px; letter-spacing: 0.1em; margin-top: 26px; line-height: 1; }
+  .title { font-weight: 400; font-size: 19px; letter-spacing: 0.2em; margin-top: 12px; color: var(--ink-soft); }
+
+  .contacts { margin-top: 26px; display: flex; flex-direction: column; gap: 10px; }
+  .contact { display: flex; align-items: center; gap: 18px; font-size: 19px; font-weight: 400; letter-spacing: 0.04em; color: var(--ink); }
+  .contact .ic { width: 36px; height: 36px; border: 1.6px solid var(--gold); border-radius: 50%; display: grid; place-items: center; flex: none; }
+  .contact .ic svg { width: 18px; height: 18px; stroke: var(--gold-dark); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+  .monogram[hidden] { display: none; }
+  .monogram { position: absolute; font-family: 'Bodoni Moda', serif; font-weight: 400; line-height: 0.8; }
+  .monogram span { position: absolute; display: block;
+    background: linear-gradient(160deg, var(--gold-light) 0%, var(--gold) 45%, var(--gold-dark) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* ---------- BACK ---------- */
+  .back { background: radial-gradient(ellipse at 75% 40%, var(--dark-2) 0%, var(--dark) 60%, #141210 100%); color: var(--text-light); }
+  .fronds { position: absolute; inset: 0; opacity: 0.05;
+    background: repeating-conic-gradient(from 200deg at 92% -10%, #fff 0deg 1.2deg, transparent 1.2deg 5deg);
+    -webkit-mask-image: radial-gradient(ellipse at 90% 0%, #000 0%, transparent 70%); mask-image: radial-gradient(ellipse at 90% 0%, #000 0%, transparent 70%); }
+  .tagline { position: absolute; left: 78px; top: 70px; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 33px; letter-spacing: 0.22em; line-height: 1.25; color: #f3ece1; }
+  .tagline em { font-style: italic; letter-spacing: 0.06em; text-transform: none; }
+  .back .rule { position: absolute; left: 78px; top: 168px; width: 260px; margin: 0; height: 1.5px; }
+
+  .cols { position: absolute; left: 78px; top: 216px; display: flex; gap: 34px; }
+  .col { display: flex; flex-direction: column; gap: 22px; }
+  .divider { width: 1.5px; background: linear-gradient(180deg, transparent, var(--gold) 15%, var(--gold) 85%, transparent); }
+  .item { display: flex; align-items: center; gap: 16px; font-size: 13.5px; font-weight: 400; letter-spacing: 0.16em; line-height: 1.5; text-transform: uppercase; color: var(--text-light); }
+  .item .ic { width: 50px; height: 50px; border: 1.6px solid var(--gold); border-radius: 50%; display: grid; place-items: center; flex: none; }
+  .item .ic svg { width: 24px; height: 24px; stroke: var(--gold-light); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .col.right { gap: 13px; }
+  .col.right .item .ic { width: 46px; height: 46px; }
+  .col.right .item .ic svg { width: 22px; height: 22px; }
+
+  /* optional illustrations for the front panel (?art=funnel|target|network) */
+  .art { position: absolute; left: 735px; top: 120px; width: 290px; height: 360px; display: none; }
+  .art svg { width: 100%; height: 100%; fill: none; stroke: url(#artGold); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .art .fill { fill: url(#artGold); stroke: none; }
+  .art .faint { opacity: .35; }
+  .art-label { position: absolute; left: 735px; width: 290px; top: 492px; text-align: center; font-size: 12px; letter-spacing: .32em; color: var(--gold-light); opacity: .8; display: none; }
+  body[data-art] #front .monogram { display: none; }
+  .panel-ombre { display: none; }
+  body[data-art] .panel-dark { display: none; }
+  body[data-art] .panel-ombre { display: inline; }
+  body[data-art] .art-label { color: var(--gold-dark); opacity: 1; font-weight: 500; }
+  body[data-art="funnel"] .art.funnel, body[data-art="target"] .art.target, body[data-art="network"] .art.network,
+  body[data-art] .art-label { display: block; }
+  .qr-block { position: absolute; right: 34px; top: 132px; width: 224px; text-align: center; }
+  .qr-block .kicker { font-size: 11.5px; letter-spacing: .42em; color: var(--gold-light); margin-right: -.42em; }
+  .qr-block .headline { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 24px; letter-spacing: .05em; color: #f3ece1; margin-top: 6px; white-space: nowrap; }
+  .qr-frame { width: 196px; height: 196px; margin: 16px auto 0; padding: 7px; border: 1.5px solid var(--gold);
+    background: linear-gradient(135deg, rgba(226,191,143,.12), rgba(138,95,53,.08)); }
+  .qr-frame .tile { width: 100%; height: 100%; background: #f3ece1; padding: 12px; }
+  .qr-frame img { display: block; width: 100%; height: 100%; }
+  .qr-block .cta { font-size: 11.5px; letter-spacing: .34em; color: var(--gold-light); margin: 16px -.34em 0 0; }
+  .qr-block .ornament { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; }
+  .qr-block .ornament i { width: 70px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+  .qr-block .ornament i:last-child { transform: scaleX(-1); }
+  .qr-block .ornament b { width: 7px; height: 7px; border: 1.2px solid var(--gold-light); transform: rotate(45deg); background: rgba(226,191,143,.25); }
+
+  /* ---------- FRONT (dark) ---------- */
+  .front-dark { background: radial-gradient(ellipse at 30% 45%, #2a2520 0%, var(--dark) 55%, #121010 100%); color: var(--text-light); }
+  .front-dark .fronds { opacity: .045; background: repeating-conic-gradient(from 160deg at 98% 8%, #fff 0deg 1.1deg, transparent 1.1deg 4.5deg);
+    -webkit-mask-image: radial-gradient(ellipse at 95% 10%, #000 0%, transparent 65%); mask-image: radial-gradient(ellipse at 95% 10%, #000 0%, transparent 65%); }
+  .gold-text { background: linear-gradient(170deg, #f1d7ad 0%, #c99a68 50%, #9a6b3e 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .fd-logo { position: absolute; left: 72px; top: 66px; display: flex; align-items: center; }
+  .fd-logo .bars { width: 92px; height: 86px; }
+  .fd-logo .vline { width: 1.5px; height: 104px; margin: 0 22px 0 20px; background: linear-gradient(180deg, transparent, var(--gold) 15%, var(--gold) 85%, transparent); }
+  .fd-logo .word { font-family: 'Bodoni Moda', serif; font-size: 80px; line-height: .9; letter-spacing: .04em; }
+  .fd-logo .sub { font-size: 19px; letter-spacing: .34em; color: var(--text-light); margin-top: 8px; }
+  .fd-rule { position: absolute; left: 330px; top: 200px; width: 110px; height: 1.5px; background: linear-gradient(90deg, transparent, var(--gold-light), transparent); }
+  .fd-name { position: absolute; left: 72px; top: 232px; font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 48px; letter-spacing: .09em; color: #f5eee3; line-height: 1; }
+  .fd-title { position: absolute; left: 74px; top: 296px; font-size: 18px; letter-spacing: .26em; color: var(--text-light); }
+  .fd-contacts { position: absolute; left: 74px; top: 352px; display: flex; flex-direction: column; gap: 19px; }
+  .fd-contacts .row { display: flex; align-items: center; gap: 22px; font-size: 18.5px; letter-spacing: .05em; color: #efe7da; }
+  .fd-contacts svg { width: 26px; height: 26px; flex: none; fill: none; stroke: var(--gold-light); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .fd-art { position: absolute; left: 748px; top: 112px; width: 270px; height: 335px; }
+  .fd-art svg { width: 100%; height: 100%; fill: none; stroke: url(#fdGold); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .fd-art .faint { opacity: .45; }
+  .fd-label { position: absolute; left: 728px; width: 310px; top: 478px; text-align: center; font-size: 13px; letter-spacing: .26em; white-space: nowrap; color: var(--gold-light); }
+</style>
+</head>
+<body>
+
+<!-- ================= FRONT ================= -->
+<div class="card front" id="front">
+  <svg class="panel" viewBox="0 0 1050 600" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="goldStroke" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#8a5f35"/><stop offset="0.5" stop-color="#e2bf8f"/><stop offset="1" stop-color="#8a5f35"/>
+      </linearGradient>
+      <radialGradient id="darkFill" cx="0.6" cy="0.45" r="0.8">
+        <stop offset="0" stop-color="#2e2822"/><stop offset="1" stop-color="#151311"/>
+      </radialGradient>
+      <linearGradient id="ombreFill" x1="0.85" y1="0" x2="0.35" y2="1">
+        <stop offset="0" stop-color="#141210"/><stop offset="0.38" stop-color="#2f2923"/><stop offset="0.68" stop-color="#8c7c6b"/><stop offset="0.9" stop-color="#d9cfc0"/><stop offset="1" stop-color="#ede6da"/>
+      </linearGradient>
+    </defs>
+    <path d="M 760 0 C 660 140, 660 460, 760 600 L 1050 600 L 1050 0 Z" fill="url(#darkFill)" class="panel-dark"/>
+    <path d="M 760 0 C 660 140, 660 460, 760 600 L 1050 600 L 1050 0 Z" fill="url(#ombreFill)" class="panel-ombre"/>
+    <path d="M 760 0 C 660 140, 660 460, 760 600" fill="none" stroke="url(#goldStroke)" stroke-width="3"/>
+  </svg>
+
+  <div class="monogram" style="left:770px; top:150px; width:260px; height:320px; font-size:190px;">
+    <span style="left:40px; top:0;">S</span>
+    <span style="left:6px; top:110px; font-size:150px;">W</span>
+    <span style="left:84px; top:124px; font-size:140px;">M</span>
+  </div>
+
+
+  <svg width="0" height="0" style="position:absolute"><defs>
+    <linearGradient id="artGold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="360"><stop offset="0" stop-color="#ecd0a4"/><stop offset=".4" stop-color="#c99a68"/><stop offset=".75" stop-color="#8a5f35"/><stop offset="1" stop-color="#5e3d1e"/></linearGradient>
+  </defs></svg>
+
+  <!-- 1. Lead funnel -->
+  <div class="art funnel"><svg viewBox="0 0 290 360">
+    <g class="faint"><path d="M145 0v40M95 8l14 34M195 8l-14 34M55 26l26 26M235 26l-26 26"/></g>
+    <circle class="fill" cx="70" cy="70" r="5"/><circle class="fill" cx="112" cy="58" r="5"/><circle class="fill" cx="150" cy="66" r="5"/>
+    <circle class="fill" cx="188" cy="56" r="5"/><circle class="fill" cx="222" cy="72" r="5"/><circle class="fill" cx="96" cy="84" r="4"/><circle class="fill" cx="200" cy="86" r="4"/>
+    <ellipse cx="145" cy="104" rx="120" ry="14"/>
+    <path d="M25 104 L105 248 V316 H185 V248 L265 104"/>
+    <path d="M58 164h174M88 212h114" class="faint"/>
+    <path d="M70 164 a75 9 0 0 0 150 0M98 212 a47 6 0 0 0 94 0"/>
+    <circle cx="145" cy="345" r="10"/><path d="M140 345l4 4 7-8"/>
+  </svg></div>
+
+  <!-- 2. Target / campaign -->
+  <div class="art target"><svg viewBox="0 0 290 360">
+    <g class="faint"><path d="M145 20v30M145 310v30M10 180h30M250 180h30M50 85l20 20M240 85l-20 20M50 275l20-20M240 275l-20-20"/></g>
+    <circle cx="145" cy="180" r="105"/><circle cx="145" cy="180" r="78" class="faint"/><circle cx="145" cy="180" r="52"/><circle cx="145" cy="180" r="26" class="faint"/>
+    <circle class="fill" cx="145" cy="180" r="9"/>
+    <path d="M152 173 L262 63"/><path d="M262 63l-4 22M262 63l-22 4M250 75l-4 22M250 75l-22 4"/>
+    <path d="M155 170l14 2-2-14z" class="fill"/>
+  </svg></div>
+
+  <!-- 3. Lead network -->
+  <div class="art network"><svg viewBox="0 0 290 360">
+    <circle cx="145" cy="180" r="130" class="faint" stroke-dasharray="2 8"/>
+    <path d="M145 180 L145 62M145 180 L250 120M145 180 L250 245M145 180 L145 300M145 180 L40 245M145 180 L40 120" class="faint"/>
+    <path d="M145 62 L250 120 L250 245 L145 300 L40 245 L40 120 Z" class="faint" stroke-dasharray="3 6"/>
+    <circle cx="145" cy="180" r="38"/><circle cx="145" cy="168" r="11"/><path d="M123 202a22 18 0 0 1 44 0"/>
+    <g>
+      <circle cx="145" cy="62" r="18"/><circle cx="145" cy="57" r="5"/><path d="M136 70a9 7 0 0 1 18 0"/>
+      <circle cx="250" cy="120" r="18"/><circle cx="250" cy="115" r="5"/><path d="M241 128a9 7 0 0 1 18 0"/>
+      <circle cx="250" cy="245" r="18"/><circle cx="250" cy="240" r="5"/><path d="M241 253a9 7 0 0 1 18 0"/>
+      <circle cx="145" cy="300" r="18"/><circle cx="145" cy="295" r="5"/><path d="M136 308a9 7 0 0 1 18 0"/>
+      <circle cx="40" cy="245" r="18"/><circle cx="40" cy="240" r="5"/><path d="M31 253a9 7 0 0 1 18 0"/>
+      <circle cx="40" cy="120" r="18"/><circle cx="40" cy="115" r="5"/><path d="M31 128a9 7 0 0 1 18 0"/>
+    </g>
+  </svg></div>
+
+  <div class="art-label"></div>
+
+  <div class="content">
+    <div class="logo">
+      S<svg viewBox="0 0 80 80" aria-hidden="true">
+        <defs><linearGradient id="og" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e2bf8f"/><stop offset=".55" stop-color="#b98a5a"/><stop offset="1" stop-color="#7d5430"/></linearGradient></defs>
+        <circle cx="38" cy="38" r="30" fill="none" stroke="url(#og)" stroke-width="5"/>
+        <path d="M 22 30 A 18 18 0 0 1 36 20" fill="none" stroke="#e2bf8f" stroke-width="2.5" stroke-linecap="round" opacity=".8"/>
+        <line x1="60" y1="60" x2="74" y2="74" stroke="url(#og)" stroke-width="7" stroke-linecap="round"/>
+      </svg>MMER
+    </div>
+    <div class="wm">WEALTH MANAGEMENT</div>
+    <div class="rule"></div>
+
+    <div class="name">ASHLEY MCQUESTION</div>
+    <div class="title">MARKETING &amp; LEAD MANAGEMENT</div>
+
+    <div class="contacts">
+      <div class="contact"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg></span>(661) 917-1107</div>
+      <div class="contact"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3 6 9 7 9-7"/></svg></span>vivienne@sommerwealthmanagement.com</div>
+      <div class="contact"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3 6 9 7 9-7"/></svg></span>ashley@sommerwealthmanagement.com</div>
+      <div class="contact"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></span>www.sommerwealthmanagement.com/invest</div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= FRONT (dark) ================= -->
+<div class="card front-dark" id="front-dark">
+  <div class="fronds"></div>
+  <svg class="panel" viewBox="0 0 1050 600" style="position:absolute;inset:0" aria-hidden="true">
+    <defs>
+      <linearGradient id="fdArc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5f35" stop-opacity=".2"/><stop offset=".3" stop-color="#e2bf8f"/><stop offset=".75" stop-color="#c99a68"/><stop offset="1" stop-color="#8a5f35" stop-opacity=".3"/></linearGradient>
+      <linearGradient id="fdGold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="360"><stop offset="0" stop-color="#f1d7ad"/><stop offset=".6" stop-color="#d1a575"/><stop offset="1" stop-color="#a87849"/></linearGradient>
+      <linearGradient id="fdBar" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1d7ad"/><stop offset=".55" stop-color="#c99a68"/><stop offset="1" stop-color="#8a5f35"/></linearGradient>
+    </defs>
+    <path d="M 735 -10 C 660 150, 660 450, 735 610" fill="none" stroke="url(#fdArc)" stroke-width="3"/>
+  </svg>
+
+  <div class="fd-logo">
+    <svg class="bars" viewBox="0 0 92 86" aria-hidden="true">
+      <rect x="0" y="50" width="16" height="36" fill="url(#fdBar)"/><rect x="25" y="34" width="16" height="52" fill="url(#fdBar)"/>
+      <rect x="50" y="18" width="16" height="68" fill="url(#fdBar)"/><path d="M75 6 L91 0 V86 H75 Z" fill="url(#fdBar)"/>
+    </svg>
+    <div class="vline"></div>
+    <div><div class="word gold-text">SOMMER</div><div class="sub">WEALTH MANAGEMENT</div></div>
+  </div>
+  <div class="fd-rule"></div>
+  <div class="fd-name">ASHLEY MCQUESTION</div>
+  <div class="fd-title">MARKETING &amp; LEAD MANAGEMENT</div>
+  <div class="fd-contacts">
+    <div class="row"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>(661) 917-1107</div>
+    <div class="row"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3 6 9 7 9-7"/></svg>vivienne@sommerwealthmanagement.com</div>
+    <div class="row"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3 6 9 7 9-7"/></svg>ashley@sommerwealthmanagement.com</div>
+    <div class="row"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>www.sommerwealthmanagement.com/invest</div>
+  </div>
+
+  <div class="fd-art"><svg viewBox="0 0 290 360">
+    <circle cx="145" cy="180" r="130" class="faint" stroke-dasharray="2 8"/>
+    <path d="M145 180 L145 62M145 180 L250 120M145 180 L250 245M145 180 L145 300M145 180 L40 245M145 180 L40 120" class="faint"/>
+    <path d="M145 62 L250 120 L250 245 L145 300 L40 245 L40 120 Z" class="faint" stroke-dasharray="3 6"/>
+    <circle cx="145" cy="180" r="38"/><circle cx="145" cy="168" r="11"/><path d="M123 202a22 18 0 0 1 44 0"/>
+    <g>
+      <circle cx="145" cy="62" r="18"/><circle cx="145" cy="57" r="5"/><path d="M136 70a9 7 0 0 1 18 0"/>
+      <circle cx="250" cy="120" r="18"/><circle cx="250" cy="115" r="5"/><path d="M241 128a9 7 0 0 1 18 0"/>
+      <circle cx="250" cy="245" r="18"/><circle cx="250" cy="240" r="5"/><path d="M241 253a9 7 0 0 1 18 0"/>
+      <circle cx="145" cy="300" r="18"/><circle cx="145" cy="295" r="5"/><path d="M136 308a9 7 0 0 1 18 0"/>
+      <circle cx="40" cy="245" r="18"/><circle cx="40" cy="240" r="5"/><path d="M31 253a9 7 0 0 1 18 0"/>
+      <circle cx="40" cy="120" r="18"/><circle cx="40" cy="115" r="5"/><path d="M31 128a9 7 0 0 1 18 0"/>
+    </g>
+  </svg></div>
+  <div class="fd-label">CONNECT · ENGAGE · GROW</div>
+</div>
+
+<!-- ================= BACK ================= -->
+<div class="card back" id="back">
+  <div class="fronds"></div>
+
+  <div class="monogram" hidden style="left:852px; top:58px; width:170px; height:240px; font-size:136px; opacity:.5;">
+    <span style="left:40px; top:0;">S</span>
+    <span style="left:0; top:80px; font-size:108px;">W</span>
+    <span style="left:58px; top:90px; font-size:102px;">M</span>
+  </div>
+
+  <div class="qr-block">
+    <div class="kicker">EXPLORE OUR</div>
+    <div class="headline">15% OPPORTUNITY</div>
+    <div class="qr-frame"><div class="tile"><img src="qr-code.png" alt="QR code"></div></div>
+    <div class="cta">SCAN TO LEARN MORE</div>
+    <div class="ornament"><i></i><b></b><i></i></div>
+  </div>
+
+  <div class="tagline">STRATEGY <em>today</em><br>A BRIGHTER TOMORROW</div>
+  <div class="rule"></div>
+
+  <div class="cols">
+    <div class="col">
+      <div class="item"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 20h16M7 17v-4M11 17V9M15 17v-6M19 17V6"/></svg></span>15% Fixed Preferred<br>Annual Returns</div>
+      <div class="item"><span class="ic"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="2.5"/><path d="M5 6v4c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 10v4c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-4M5 14v4c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-4"/></svg></span>Paid Quarterly<br>at 3.75%</div>
+      <div class="item"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6z"/><path d="m9 12 2 2 4-4"/></svg></span>Not Correlated<br>to Broader Markets</div>
+      <div class="item"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="7" cy="8" r="2"/><circle cx="12" cy="7" r="2.2"/><circle cx="17" cy="8" r="2"/><path d="M4 18v-4a3 3 0 0 1 6 0M9 18v-4.5a3 3 0 0 1 6 0V18M14 14a3 3 0 0 1 6 0v4"/></svg></span>Backed by Real Assets<br>(Medical Receivables)</div>
+    </div>
+    <div class="divider"></div>
+    <div class="col right">
+      <div class="item"><span class="ic"><svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 11h6M9 14h6M9 17h4"/></svg></span>Over a Decade of<br>Perfect Performance</div>
+      <div class="item"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg></span>Fully Audited<br>(Annual &amp; Quarterly Reports)</div>
+      <div class="item"><span class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3M12 15v2"/></svg></span>First-Position Liens<br>for Added Security</div>
+      <div class="item"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="2.5"/><circle cx="6" cy="10" r="2"/><circle cx="18" cy="10" r="2"/><path d="M8 20v-3a4 4 0 0 1 8 0v3M3 19v-2a3 3 0 0 1 4-2.8M21 19v-2a3 3 0 0 0-4-2.8"/></svg></span>Accepts Individual,<br>Trust, and Retirement<br>Accounts</div>
+      <div class="item"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></span>No Entry or Exit Fees</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const art = new URLSearchParams(location.search).get('art');
+  const labels = { funnel: 'LEADS · NURTURE · CONVERT', target: 'STRATEGY · REACH · RESULTS', network: 'CONNECT · ENGAGE · GROW' };
+  if (labels[art]) { document.body.dataset.art = art; document.querySelector('.art-label').textContent = labels[art]; }
+</script>
+</body>
+</html>
